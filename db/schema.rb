@@ -11,7 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160110054920) do
+ActiveRecord::Schema.define(version: 20160110064616) do
+
+  create_table "logs", force: :cascade do |t|
+    t.string   "status"
+    t.string   "message"
+    t.integer  "task_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tasks", force: :cascade do |t|
+    t.string   "name"
+    t.string   "token"
+    t.integer  "period"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "tasks", ["name"], name: "index_tasks_on_name"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
