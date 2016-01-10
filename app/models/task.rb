@@ -1,5 +1,7 @@
 # Task
 class Task < ActiveRecord::Base
+  include Editable
+
   belongs_to :user
   has_many :logs
 

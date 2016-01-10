@@ -1,7 +1,7 @@
 # TasksController
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
-  before_action :permission_check, only: :show
+  before_action :permission_check, only: [:show, :update, :destroy]
 
   respond_to :html
 
@@ -50,6 +50,6 @@ class TasksController < ApplicationController
   end
 
   def permission_check
-    redirect_to root_path unless @task.user == current_user
+    redirect_to root_path unless @task.editable?(current_user)
   end
 end
