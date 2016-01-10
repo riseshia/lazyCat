@@ -6,4 +6,8 @@ class Task < ActiveRecord::Base
   validates :token, presence: true
   validates :name, presence: true
   validates :period, presence: true, numericality: true
+
+  before_create do
+    self.token = SecureRandom.hex(32)
+  end
 end

@@ -2,7 +2,7 @@ FactoryGirl.define do
   factory :task, class: Task do
     name 'Task 01'
     token 'Blabla'
-    period '3600'
+    period 3600
     association :user, factory: :user
   end
 
