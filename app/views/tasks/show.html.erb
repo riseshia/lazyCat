@@ -26,7 +26,7 @@
   </thead>
 
   <tbody>
-    <% @task.logs.each do |log| %>
+    <% @task.logs.order(id: :desc).limit(20).each do |log| %>
       <tr>
         <td><%= log.created_at %></td>
         <td><%= log.status %> </td>
