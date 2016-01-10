@@ -4,25 +4,33 @@ RSpec.describe ApiController, type: :controller do
   describe 'POST #index' do
     let(:valid_payload) do
       {
-        token: "65a8f249a606569ea81c2d2d41a24f59c3016698484cbb294edcf6eeb9196016",
-        status: "ok",
-        message: "Job is done"
+        token: '65a8f249a606569ea81c2d2d41a24f59c3016698484cbb294edcf6eeb9196016',
+        status: 'ok',
+        message: 'Job is done'
       }
     end
 
     let(:no_status_payload) do
       {
-        token: "65a8f249a606569ea81c2d2d41a24f59c3016698484cbb294edcf6eeb9196016",
-        # status: "fail",
-        message: "Job is done"
+        token: '65a8f249a606569ea81c2d2d41a24f59c3016698484cbb294edcf6eeb9196016',
+        # status: 'fail',
+        message: 'Job is done'
       }
     end
 
     let(:no_message_payload) do
       {
-        token: "65a8f249a606569ea81c2d2d41a24f59c3016698484cbb294edcf6eeb9196016",
-        status: "ok"
-        # message: "No Message"
+        token: '65a8f249a606569ea81c2d2d41a24f59c3016698484cbb294edcf6eeb9196016',
+        status: 'ok'
+        # message: 'No Message'
+      }
+    end
+
+    let(:wrong_token_payload) do
+      {
+        token: '65a8f249a606569ea81c2d2d41a24f59c3016698484cbb294edcf6eeb9196016',
+        status: 'ok'
+        # message: 'No Message'
       }
     end
 
@@ -42,6 +50,11 @@ RSpec.describe ApiController, type: :controller do
 
       it 'returns http success if token exists' do
         post :index, valid_payload
+        expect(response).to have_http_status(:success)
+      end
+
+      it 'returns http success if token exists and could not found proper task' do
+        post :index, wrong_token_payload
         expect(response).to have_http_status(:success)
       end
 

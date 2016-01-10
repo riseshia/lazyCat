@@ -23,7 +23,7 @@ class Task < ActiveRecord::Base
 
   private
 
-  def working? log
+  def working?(log)
     log.created_at.to_i + period > Time.zone.now.to_i
   end
 end
