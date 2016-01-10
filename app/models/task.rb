@@ -1,3 +1,4 @@
+# Task
 class Task < ActiveRecord::Base
   belongs_to :user
   has_many :logs
@@ -5,6 +6,7 @@ class Task < ActiveRecord::Base
   validates :user_id, presence: true
   validates :token, presence: true
   validates :name, presence: true
+  validates :period, presence: true
 
   before_create do
     self.token = SecureRandom.hex(32)

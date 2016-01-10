@@ -1,10 +1,11 @@
+# TasksController
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
 
   respond_to :html
 
   def index
-    @tasks = Task.all
+    @tasks = current_user.tasks
     respond_with(@tasks)
   end
 
@@ -38,11 +39,12 @@ class TasksController < ApplicationController
   end
 
   private
-    def set_task
-      @task = Task.find(params[:id])
-    end
 
-    def task_params
-      params.require(:task).permit(:name, :token, :period)
-    end
+  def set_task
+    @task = Task.find(params[:id])
+  end
+
+  def task_params
+    params.require(:task).permit(:name, :token, :period)
+  end
 end
