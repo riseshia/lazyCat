@@ -14,6 +14,6 @@ set :puma_workers, 0
 set :nginx_server_name, -> { 'lazycat.nyatorie.com' }
 
 # SSL
-set :nginx_use_ssl, false
+set :nginx_use_ssl, true
 set :nginx_ssl_cert_path, '/etc/letsencrypt/live/lazycat.nyatorie.com/fullchain.pem'
 set :nginx_ssl_key_path, '/etc/letsencrypt/live/lazycat.nyatorie.com/privkey.pem'
