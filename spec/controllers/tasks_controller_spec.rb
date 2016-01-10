@@ -67,10 +67,16 @@ RSpec.describe TasksController, type: :controller do
     end
 
     describe 'GET #show' do
-      it 'assigns the requested task as @task' do
+      it 'assigns the requested task as @task if current_user\'s' do
         task = Task.create! valid_attributes
         get :show, { id: task.to_param }, valid_session
         expect(assigns(:task)).to eq(task)
+      end
+
+      it 'redirects the requested task unless current_user\'s' do
+        task = create(:task_by_user2)
+        get :show, { id: task.to_param }, valid_session
+        expect(response).to redirect_to(root_path)
       end
     end
 

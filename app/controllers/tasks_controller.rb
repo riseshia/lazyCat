@@ -1,6 +1,7 @@
 # TasksController
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :permission_check, only: :show
 
   respond_to :html
 
@@ -46,5 +47,9 @@ class TasksController < ApplicationController
 
   def task_params
     params.require(:task).permit(:name, :token, :period)
+  end
+
+  def permission_check
+    redirect_to root_path unless @task.user == current_user
   end
 end
