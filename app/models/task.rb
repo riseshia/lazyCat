@@ -5,7 +5,7 @@ class Task < ActiveRecord::Base
   validates :user_id, presence: true
   validates :token, presence: true
   validates :name, presence: true
-  validates :period, presence: true, numericality: true
+  validates_numericality_of :period
 
   before_create do
     self.token = SecureRandom.hex(32)
