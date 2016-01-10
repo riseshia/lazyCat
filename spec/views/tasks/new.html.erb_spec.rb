@@ -11,8 +11,6 @@ RSpec.describe 'tasks/new', type: :view do
     assert_select 'form[action=?][method=?]', tasks_path, 'post' do
       assert_select 'input#task_name[name=?]', 'task[name]'
 
-      assert_select 'input#task_token[name=?]', 'task[token]'
-
       assert_select 'input#task_period[name=?]', 'task[period]'
     end
   end

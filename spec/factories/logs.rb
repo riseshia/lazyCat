@@ -4,4 +4,16 @@ FactoryGirl.define do
     message 'MyString'
     association :task, factory: :task
   end
+
+  factory :fail_log, class: Log do
+    association :task, factory: :task
+    status 'fail'
+    message 'MyString'
+  end
+
+  factory :ok_log, class: Log do
+    association :task, factory: :task
+    status 'ok'
+    message 'MyString'
+  end
 end
