@@ -6,7 +6,7 @@ class Log < ActiveRecord::Base
 
   before_create do |log|
     log.status = 'fail' unless log.status == 'ok'
-    log.message = 'No Message' if log.message?
+    log.message = 'No Message' if log.message.nil?
   end
 
   def self.create_with_param(params, task)
