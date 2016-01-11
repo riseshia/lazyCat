@@ -28,4 +28,4 @@ production:
   pool: 5
   username: <%= ENV["LC_DATABASE_ID"] %>
   password: <%= ENV["LC_DATABASE_PWD"] %>
-  host: <%= ENV["LC_HOST"] %>
+  host: <%= ENV["LC_DATABASE_HOST"] %>
